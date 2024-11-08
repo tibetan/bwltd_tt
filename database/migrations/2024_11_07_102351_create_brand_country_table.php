@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('brand_id')->constrained('brands')->cascadeOnDelete();
             $table->foreignId('country_id')->constrained('countries')->cascadeOnDelete();
 
+            $table->unique(['brand_id', 'country_id']);
         });
     }
 
