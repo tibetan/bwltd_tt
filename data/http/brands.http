@@ -31,7 +31,8 @@ Content-Type: application/json
 {
   "name": "test",
   "image": "/img/nine-casino.png",
-  "rating": 5
+  "rating": 1,
+  "country_id": 3
 }
 
 ###
@@ -42,14 +43,15 @@ Content-Type: application/json
 
 ###
 
-PATCH {{host}}/api/brands/26
+PATCH {{host}}/api/brands/31
 Accept: application/json
 Content-Type: application/json
 
 {
     "name": "test2",
     "image": "/img/nine-casino.png",
-    "rating": 1
+    "rating": 5,
+    "country_id": 2
 }
 
 ###

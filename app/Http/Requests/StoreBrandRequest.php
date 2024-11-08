@@ -27,6 +27,7 @@ class StoreBrandRequest extends FormRequest
             'name' => 'required|string|max:255',
             'image' => 'required|string|max:255',
             'rating' => 'required|integer|min:1|max:5',
+            'country_id' => 'required|integer',
         ];
     }
 }

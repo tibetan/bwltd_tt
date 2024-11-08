@@ -27,12 +27,23 @@ class BrandRepository implements BrandRepositoryInterface
 
     public function create(array $data): array
     {
-        return Brand::create($data)->toArray();
+        $brand = Brand::create($data);
+
+        if (!empty($data['country_id'])) {
+            $brand->countries()->attach($data['country_id']);
+        }
+
+        return $brand->toArray();
     }
 
     public function update(array $data, int $id): array
     {
         $brand = Brand::findOrFail($id);
+
+        if (!empty($data['country_id'])) {
+            $brand->countries()->sync($data['country_id']);
+        }
+
         $brand->update($data);
 
         return $brand->toArray();
