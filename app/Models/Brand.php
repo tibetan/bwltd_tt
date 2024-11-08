@@ -17,6 +17,17 @@ class Brand extends Model
     protected $table = 'brands';
 
     /**
+     * Massive fill of the fields
+     *
+     * @var string[]
+     */
+    protected $fillable = [
+        'name',
+        'image',
+        'rating',
+    ];
+
+    /**
      * @var bool
      */
     public $timestamps = true;

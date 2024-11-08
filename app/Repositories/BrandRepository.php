@@ -24,4 +24,9 @@ class BrandRepository implements BrandRepositoryInterface
     {
         return Brand::findOrFail($id)->toArray();
     }
+
+    public function create(array $data): array
+    {
+        return Brand::create($data)->toArray();
+    }
 }

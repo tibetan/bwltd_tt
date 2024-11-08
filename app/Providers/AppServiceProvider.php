@@ -7,6 +7,8 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use App\Repositories\BrandRepository;
 use App\Repositories\BrandRepositoryInterface;
+use App\Repositories\CountryRepository;
+use App\Repositories\CountryRepositoryInterface;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -16,6 +18,7 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->bind(BrandRepositoryInterface::class, BrandRepository::class);
+        $this->app->bind(CountryRepositoryInterface::class, CountryRepository::class);
     }
 
     /**

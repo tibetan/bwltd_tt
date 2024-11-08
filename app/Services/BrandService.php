@@ -42,4 +42,9 @@ class BrandService
     {
         return $this->brandRepository->getBrandById($id);
     }
+
+    public function createBrand(array $data): array
+    {
+        return $this->brandRepository->create($data);
+    }
 }

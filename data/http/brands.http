@@ -1,16 +1,37 @@
 #Without country
 GET {{host}}/api/brands
 Accept: application/json
+Content-Type: application/json
 
 ###
 
 GET {{host}}/api/brands
 Accept: application/json
+Content-Type: application/json
 CF-IPCountry: IT
 
 ###
 
 GET {{host}}/api/brands/1/
 Accept: application/json
+Content-Type: application/json
+
+###
+
+GET {{host}}/api/brands/create
+Accept: application/json
+Content-Type: application/json
+
+###
+
+POST {{host}}/api/brands
+Accept: application/json
+Content-Type: application/json
+
+{
+  "name": "test",
+  "image": "/img/nine-casino.png",
+  "rating": 5
+}
 
 ###
