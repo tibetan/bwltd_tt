@@ -29,4 +29,24 @@ class BrandRepository implements BrandRepositoryInterface
     {
         return Brand::create($data)->toArray();
     }
+
+    public function update(array $data, int $id): array
+    {
+        $brand = Brand::findOrFail($id);
+        $brand->update($data);
+
+        return $brand->toArray();
+    }
+
+    public function getEmptyBrand(): array
+    {
+        return [
+            'id' => null,
+            'name' => null,
+            'image' => null,
+            'rating' => null,
+            'created_at' => null,
+            'updated_at' => null,
+        ];
+    }
 }

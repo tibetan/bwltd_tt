@@ -35,3 +35,21 @@ Content-Type: application/json
 }
 
 ###
+
+GET {{host}}/api/brands/2/edit
+Accept: application/json
+Content-Type: application/json
+
+###
+
+PATCH {{host}}/api/brands/26
+Accept: application/json
+Content-Type: application/json
+
+{
+    "name": "test2",
+    "image": "/img/nine-casino.png",
+    "rating": 1
+}
+
+###

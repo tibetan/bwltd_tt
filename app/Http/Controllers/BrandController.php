@@ -6,10 +6,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Http\JsonResponse;
 use App\Services\BrandService;
 use App\Http\Resources\BrandResource;
 use App\Services\CountryService;
 use App\Http\Requests\StoreBrandRequest;
+
 
 class BrandController extends Controller
 {
@@ -31,6 +33,8 @@ class BrandController extends Controller
     }
 
     /**
+     * Get the brand by ID
+     *
      * @param int $id
      * @return BrandResource
      */
@@ -41,24 +45,59 @@ class BrandController extends Controller
         return new BrandResource($brand);
     }
 
-    public function create(): AnonymousResourceCollection
+    /**
+     * Get form for the creation of the brand
+     *
+     * @return BrandResource
+     */
+    public function create(): BrandResource
     {
+        $emptyBrand = $this->brandService->getEmptyBrand();
         $countries = $this->countryService->getCountries();
 
-        return BrandResource::collection([])
-            ->additional(['countries' => $countries]);
+        return (new BrandResource($emptyBrand))->additional(['countries' => $countries]);
     }
 
     /**
-     * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
+     * Save new brand
+     *
+     * @param StoreBrandRequest $brandRequest
+     * @return JsonResponse
      */
-    public function store(StoreBrandRequest $brandRequest)
+    public function store(StoreBrandRequest $brandRequest): JsonResponse
     {
         $brand = $this->brandService->createBrand($brandRequest->validated());
 
         return (new BrandResource($brand))
             ->response()
             ->setStatusCode(201);
+    }
+
+    /**
+     * Get form for the update of the brand
+     *
+     * @return BrandResource
+     */
+    public function edit(int $id): BrandResource
+    {
+        $brand = $this->brandService->getBrand($id);
+        $countries = $this->countryService->getCountries();
+
+        return (new BrandResource($brand))->additional(['countries' => $countries]);
+    }
+
+    /**
+     * Update brand
+     *
+     * @param StoreBrandRequest $brandRequest
+     * @return JsonResponse
+     */
+    public function update(StoreBrandRequest $brandRequest, int $id): JsonResponse
+    {
+        $brand = $this->brandService->updateBrand($brandRequest->validated(), $id);
+
+        return (new BrandResource($brand))
+            ->response()
+            ->setStatusCode(200);
     }
 }

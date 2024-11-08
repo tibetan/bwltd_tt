@@ -43,8 +43,35 @@ class BrandService
         return $this->brandRepository->getBrandById($id);
     }
 
+    /**
+     * Save new brand to DB
+     *
+     * @param array $data
+     * @return array
+     */
     public function createBrand(array $data): array
     {
         return $this->brandRepository->create($data);
+    }
+
+    /**
+     * Update brand in DB
+     *
+     * @param array $data
+     * @return array
+     */
+    public function updateBrand(array $data, int $id): array
+    {
+        return $this->brandRepository->update($data, $id);
+    }
+
+    /**
+     * Get empty brand
+     *
+     * @return array
+     */
+    public function getEmptyBrand(): array
+    {
+        return $this->brandRepository->getEmptyBrand();
     }
 }
