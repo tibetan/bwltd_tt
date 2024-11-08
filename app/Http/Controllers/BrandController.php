@@ -7,6 +7,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Services\BrandService;
 use App\Http\Resources\BrandCollectionResource;
+use App\Http\Resources\BrandResource;
 
 class BrandController extends Controller
 {
@@ -15,8 +16,10 @@ class BrandController extends Controller
     ) {}
 
     /**
+     * Get all brands
+     *
      * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return BrandCollectionResource
      */
     public function index(Request $request): BrandCollectionResource
     {
@@ -25,4 +28,16 @@ class BrandController extends Controller
 
         return new BrandCollectionResource($topList);
     }
+
+    /**
+     * @param int $id
+     * @return BrandResource
+     */
+    public function show(int $id): BrandResource
+    {
+        $brand = $this->brandService->getBrand($id);
+
+        return new BrandResource($brand);
+    }
+
 }

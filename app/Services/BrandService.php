@@ -31,4 +31,15 @@ class BrandService
 
         return $this->brandRepository->getDefaultToplist();
     }
+
+    /**
+     * Get brand by ID
+     *
+     * @param int $id
+     * @return array
+     */
+    public function getBrand(int $id): array
+    {
+        return $this->brandRepository->getBrandById($id);
+    }
 }

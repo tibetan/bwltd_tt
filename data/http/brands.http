@@ -9,3 +9,8 @@ Accept: application/json
 CF-IPCountry: IT
 
 ###
+
+GET {{host}}/api/brands/1/
+Accept: application/json
+
+###

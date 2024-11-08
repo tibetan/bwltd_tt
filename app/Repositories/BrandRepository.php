@@ -19,4 +19,9 @@ class BrandRepository implements BrandRepositoryInterface
     {
         return Brand::orderBy('rating', 'desc')->take(5)->get()->toArray();
     }
+
+    public function getBrandById(int $id): array
+    {
+        return Brand::findOrFail($id)->toArray();
+    }
 }
