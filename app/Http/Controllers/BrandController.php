@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Services\BrandService;
+use App\Http\Resources\BrandCollectionResource;
 
 class BrandController extends Controller
 {
@@ -13,13 +14,15 @@ class BrandController extends Controller
         private BrandService $brandService,
     ) {}
 
-    public function index(Request $request)
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function index(Request $request): BrandCollectionResource
     {
         $countryCode = $request->input('country_code');
         $topList = $this->brandService->getToplistByCountry($countryCode);
 
-        return response()->json([
-            'data' => $topList
-        ]);
+        return new BrandCollectionResource($topList);
     }
 }
