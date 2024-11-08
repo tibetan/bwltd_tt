@@ -1,0 +1,11 @@
+#Without country
+GET {{host}}/api/brands
+Accept: application/json
+
+###
+
+GET {{host}}/api/brands
+Accept: application/json
+CF-IPCountry: IT
+
+###
