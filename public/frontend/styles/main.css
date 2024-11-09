@@ -1,0 +1,8 @@
+.list .list-row {
+    padding: 8px;
+}
+
+.list .list-col {
+    padding: 10px;
+    min-height: 3rem;
+}
