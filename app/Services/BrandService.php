@@ -74,4 +74,15 @@ class BrandService
     {
         return $this->brandRepository->getEmptyBrand();
     }
+
+    /**
+     * Delete Brand with all data
+     *
+     * @param int $id
+     * @return bool
+     */
+    public function deleteBrand(int $id): bool
+    {
+        return $this->brandRepository->delete($id);
+    }
 }

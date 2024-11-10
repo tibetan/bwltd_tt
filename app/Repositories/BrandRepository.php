@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Repositories;
 
 use App\Models\Brand;
+use mysql_xdevapi\Result;
 
 class BrandRepository implements BrandRepositoryInterface
 {
@@ -59,5 +60,19 @@ class BrandRepository implements BrandRepositoryInterface
             'created_at' => null,
             'updated_at' => null,
         ];
+    }
+
+    /**
+     * Delete Brand with all data in pivot table
+     *
+     * @param int $id
+     * @return bool
+     */
+    public function delete(int $id): bool
+    {
+        $brand = Brand::findOrFail($id);
+        $brand->countries()->detach();
+
+        return $brand->delete();
     }
 }

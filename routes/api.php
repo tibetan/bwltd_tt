@@ -10,3 +10,4 @@ Route::get('/brands/{id}/edit', [BrandController::class, 'edit'])->name('brand.e
 Route::get('/brands/{id}', [BrandController::class, 'show'])->name('brand.show');
 Route::post('/brands', [BrandController::class, 'store'])->name('brand.store');
 Route::patch('/brands/{id}', [BrandController::class, 'update'])->name('brand.update');
+Route::delete('/brands/{id}', [BrandController::class, 'destroy'])->name('brand.destroy');

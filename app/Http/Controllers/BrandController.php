@@ -7,6 +7,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Response;
 use App\Services\BrandService;
 use App\Http\Resources\BrandResource;
 use App\Services\CountryService;
@@ -66,7 +67,16 @@ class BrandController extends Controller
      */
     public function store(StoreBrandRequest $brandRequest): JsonResponse
     {
-        $brand = $this->brandService->createBrand($brandRequest->validated());
+        if ($brandRequest->file('image')) {
+            $file = $brandRequest->file('image');
+            $filePath = $file->storeAs('img', $file->getClientOriginalName(), 'public');
+            $imageUrl = str_replace('public/', '', $filePath);
+        }
+
+        $brandData = $brandRequest->validated();
+        $brandData['image'] = $imageUrl;
+
+        $brand = $this->brandService->createBrand($brandData);
 
         return (new BrandResource($brand))
             ->response()
@@ -99,5 +109,15 @@ class BrandController extends Controller
         return (new BrandResource($brand))
             ->response()
             ->setStatusCode(200);
+    }
+
+    /**
+     * @param int $id
+     * @return Response
+     */
+    public function destroy(int $id): Response
+    {
+        $this->brandService->deleteBrand($id);
+        return response()->noContent();
     }
 }

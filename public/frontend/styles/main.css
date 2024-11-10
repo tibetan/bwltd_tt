@@ -3,6 +3,14 @@
 }
 
 .list .list-col {
-    padding: 10px;
-    min-height: 3rem;
+    padding: 10px 5px 5px;
+    min-height: 6rem;
+}
+
+.list .list-col .list-stars {
+    display: inline-block;
+}
+
+.list .list-col button {
+    display: inline-block;
 }
