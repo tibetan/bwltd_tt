@@ -1,13 +1,13 @@
-#Blue Window Ltd Test Task
+# Blue Window Ltd Test Task
 This project consists of a backend built with Laravel and a frontend composed of a single HTML file, index.html, along with accompanying styles and JavaScript files.
 
-##Project Setup
+## Project Setup
 
-###Prerequisites
+### Prerequisites
 Docker and Docker Compose installed on your machine
 
-###Getting Started
-####1. Run Docker Containers
+### Getting Started
+#### 1. Run Docker Containers
 
 From the root project directory, run:
 
@@ -17,7 +17,7 @@ docker compose up -d --build
 
 This will build and start the required Docker containers.
 
-####2. First-Time Deployment
+#### 2. First-Time Deployment
 
 For initial project setup, execute:
 
@@ -30,7 +30,7 @@ This command will perform the following steps:
 Install all necessary dependencies.
 Run migrations and seed the database, generate swagger documentation.
 
-####3. Swagger documentation
+#### 3. Swagger documentation
 
 The project uses the [swagger library](https://github.com/DarkaOnLine/L5-Swagger): `darkaonline/l5-swagger`.
 
@@ -40,7 +40,7 @@ The documentation is available by the URL:
 http://localhost/api/documentation
 ```
 
-##Frontend
+## Frontend
 
 The frontend files are located in the `./public/frontend/` directory, with index.html as the main entry point.
 You can access it in your browser at:
