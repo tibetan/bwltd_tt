@@ -1,0 +1,57 @@
+#Without country
+GET {{host}}/api/brands
+Accept: application/json
+
+###
+
+GET {{host}}/api/brands
+Accept: application/json
+CF-IPCountry: IT
+
+###
+
+GET {{host}}/api/brands/1/
+Accept: application/json
+
+###
+
+GET {{host}}/api/brands/create
+Accept: application/json
+
+###
+
+POST {{host}}/api/brands
+Accept: application/json
+Content-Type: application/json
+
+{
+  "name": "test",
+  "image": "/img/nine-casino.png",
+  "rating": 1,
+  "country_id": 3
+}
+
+###
+
+GET {{host}}/api/brands/2/edit
+Accept: application/json
+
+###
+
+PATCH {{host}}/api/brands/31
+Accept: application/json
+Content-Type: application/json
+
+{
+    "name": "test2",
+    "image": "/img/nine-casino.png",
+    "rating": 5,
+    "country_id": 2
+}
+
+###
+
+DELETE {{host}}/api/brands/1/
+Accept: application/json
+
+###
