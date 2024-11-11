@@ -28,7 +28,17 @@ make deploy-project-first-time
 This command will perform the following steps:
 
 Install all necessary dependencies.
-Run migrations and seed the database
+Run migrations and seed the database, generate swagger documentation.
+
+####3. Swagger documentation
+
+The project uses the [swagger library](https://github.com/DarkaOnLine/L5-Swagger): `darkaonline/l5-swagger`.
+
+The documentation is available by the URL:
+
+```arduino
+http://localhost/api/documentation
+```
 
 ##Frontend
 
