@@ -13,7 +13,6 @@ use App\Http\Resources\BrandResource;
 use App\Services\CountryService;
 use App\Http\Requests\StoreBrandRequest;
 
-
 class BrandController extends Controller
 {
     public function __construct(
@@ -22,6 +21,25 @@ class BrandController extends Controller
     ) {}
 
     /**
+     * @OA\Get(
+     *     path="/api/brands",
+     *     summary="Get top list of Brands",
+     *     tags={"Brand"},
+     *     @OA\Parameter(ref="#/components/parameters/Accept"),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Successful operation",
+     *         @OA\JsonContent(
+     *             type="array",
+     *             @OA\Items(ref="#/components/schemas/Brand")
+     *         ),
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="Bad request"
+     *     )
+     * )
+     *
      * @param Request $request
      * @return AnonymousResourceCollection
      */
@@ -34,6 +52,28 @@ class BrandController extends Controller
     }
 
     /**
+     * @OA\Get(
+     *     path="/api/brands/{id}",
+     *     summary="Get an brand by ID",
+     *     tags={"Brand"},
+     *     @OA\Parameter(ref="#/components/parameters/Accept"),
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         required=true,
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Successful operation",
+     *         @OA\JsonContent(ref="#/components/schemas/Brand")
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Brand not found"
+     *     )
+     * )
+     *
      * Get the brand by ID
      *
      * @param int $id
@@ -47,6 +87,21 @@ class BrandController extends Controller
     }
 
     /**
+     * @OA\Get(
+     *     path="/api/brands/create",
+     *     summary="Get form for creating a new brand",
+     *     tags={"Brand"},
+     *     @OA\Response(
+     *         response=200,
+     *         description="Form data for brand creation",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="brand", ref="#/components/schemas/Brand"),
+     *             @OA\Property(property="countries", type="array", @OA\Items(ref="#/components/schemas/Country"))
+     *         ),
+     *     )
+     * )
+     *
      * Get form for the creation of the brand
      *
      * @return BrandResource
@@ -60,6 +115,25 @@ class BrandController extends Controller
     }
 
     /**
+     * @OA\Post(
+     *     path="/api/brands",
+     *     summary="Create a new brand",
+     *     tags={"Brand"},
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(ref="#/components/schemas/StoreBrandRequest")
+     *     ),
+     *     @OA\Response(
+     *         response=201,
+     *         description="Brand created successfully",
+     *         @OA\JsonContent(ref="#/components/schemas/Brand")
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="Bad request"
+     *     )
+     * )
+     *
      * Save new brand
      *
      * @param StoreBrandRequest $brandRequest
@@ -84,6 +158,28 @@ class BrandController extends Controller
     }
 
     /**
+     * @OA\Get(
+     *     path="/api/brands/{id}/edit",
+     *     summary="Get form for editing a brand",
+     *     tags={"Brand"},
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         required=true,
+     *         description="ID of the brand",
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Form data for brand editing",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="brand", ref="#/components/schemas/Brand"),
+     *             @OA\Property(property="countries", type="array", @OA\Items(ref="#/components/schemas/Country"))
+     *         ),
+     *     )
+     * )
+     *
      * Get form for the update of the brand
      *
      * @return BrandResource
@@ -97,6 +193,32 @@ class BrandController extends Controller
     }
 
     /**
+     * @OA\Patch(
+     *     path="/api/brands/{id}",
+     *     summary="Update an existing brand",
+     *     tags={"Brand"},
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         required=true,
+     *         description="ID of the brand",
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(ref="#/components/schemas/StoreBrandRequest")
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Brand updated successfully",
+     *         @OA\JsonContent(ref="#/components/schemas/Brand")
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="Bad request"
+     *     )
+     * )
+     *
      * Update brand
      *
      * @param StoreBrandRequest $brandRequest
@@ -112,6 +234,27 @@ class BrandController extends Controller
     }
 
     /**
+     * @OA\Delete(
+     *     path="/api/brands/{id}",
+     *     summary="Delete a brand",
+     *     tags={"Brand"},
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         required=true,
+     *         description="ID of the brand",
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\Response(
+     *         response=204,
+     *         description="Brand deleted successfully"
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="Bad request"
+     *     )
+     * )
+     *
      * @param int $id
      * @return Response
      */

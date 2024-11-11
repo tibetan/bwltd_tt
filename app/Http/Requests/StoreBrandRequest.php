@@ -6,6 +6,34 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * @OA\Schema(
+ *     schema="StoreBrandRequest",
+ *     type="object",
+ *     required={"name", "image", "rating"},
+ *     @OA\Property(
+ *         property="name",
+ *         type="string",
+ *         description="Name of the brand"
+ *     ),
+ *     @OA\Property(
+ *         property="image",
+ *         type="string",
+ *         format="binary",
+ *         description="Image file for the brand"
+ *     ),
+ *     @OA\Property(
+ *         property="rating",
+ *         type="integer",
+ *         description="Rating of the brand"
+ *     ),
+ *     @OA\Property(
+ *         property="country_id",
+ *         type="integer",
+ *         description="ID of the associated country"
+ *     ),
+ * )
+ */
 class StoreBrandRequest extends FormRequest
 {
     /**
